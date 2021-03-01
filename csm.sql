@@ -1,0 +1,45 @@
+/**
+  *后台管理员
+  */
+create table user(
+	`id` INT(14) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(32) NOT NULL COMMENT'管理员用户名',
+	`password` VARCHAR(32) NOT NULL COMMENT'密码',
+	`login_ip` VARCHAR(16) NOT NULL COMMENT'登陆ip',
+	`status` tinyint(1) NOT NULL DEFAULT 0 COMMENT'登陆状态 0未登录 1以登陆',
+	`create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT'更新时间',
+	`update_at` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+create table admin_role(
+    `admin_id` INT(14) UNSIGNED NOT NULL COMMENT'管理员id',
+    `role_id` INT(14) UNSIGNED NOT NULL COMMENT'角色id',
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+create table role(
+	`id` INT(14) UNSIGEND NOT NULL AUTO_INCREMENT,
+	`role_name` VARCHAR(32) NOT NULL COMMENT'角色名',
+	`details` VARCHAR(125) NOT NULL DEFAULT '' COMMENT'简介',
+	`create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT'更新时间',
+	`update_at` ON UPDATE CURRENT_TIMESTAMP  DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+create table role_permiss(
+    `role_id` INT(14) UNSIGNED NOT NULL COMMENT'管理员id',
+    `permiss_id` INT(14) UNSIGNED NOT NULL COMMENT'角色id',
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+create table permiss(
+	`id` INT(14) UNSIGEND NOT NULL AUTO_INCREMENT,
+	`permiss_name` VARCHAR(32) NOT NULL COMMENT'权限名',
+	`url` VARCHAR(125) NOT NULL DEFAULT '' COMMENT'权限点路由',
+	`details` VARCHAR(125) NOT NULL DEFAULT '' COMMENT'简介',
+	`create_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT'更新时间',
+	`update_at` ON UPDATE CURRENT_TIMESTAMP  DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
